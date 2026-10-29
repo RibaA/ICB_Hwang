@@ -120,7 +120,7 @@ tpm <- tpm[
 # 5. Log2 transformation
 # ------------------------------------------------------------
 
-tpm <- log2(tpm + 0.001)
+tpm <- log2(tpm + 1)
 
 # ------------------------------------------------------------
 # 6. Export harmonized expression matrix
