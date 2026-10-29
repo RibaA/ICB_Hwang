@@ -1,0 +1,58 @@
+study,dataset.drug.name,treatmentid
+Braun,NIVOLUMAB,Nivolumab
+Hugo,Pembrolizumab,Pembrolizumab
+Hugo,Nivolumab,Nivolumab
+Miao1,nivolumab,Nivolumab
+Miao1,nivolumab + ipilimumab,Nivolumab + Ipilimumab
+Miao1,atezolizumab,Atezolizumab
+VanDenEnde,neoadjuvant chemoradiotherapy + atezolizumab,neoadjuvant chemoradiotherapy + Atezolizumab
+Wolf,Paclitaxel + Ganitumab,Paclitaxel + Ganitumab
+Wolf,Paclitaxel + Ganetespib,Paclitaxel + Ganetespib
+Wolf,Paclitaxel + MK-2206,Paclitaxel + MK-2206
+Wolf,Paclitaxel + Pembrolizumab,Paclitaxel + Pembrolizumab
+Wolf,Paclitaxel,Paclitaxel
+Wolf,Paclitaxel + AMG 386,Paclitaxel + Trebananib
+Wolf,Paclitaxel + MK-2206 + Trastuzumab,Paclitaxel + MK-2206 + Trastuzumab
+Wolf,Paclitaxel + Neratinib,Paclitaxel + Neratinib
+Wolf,Paclitaxel + ABT 888 + Carboplatin,Paclitaxel + Veliparib dihydrochloride + Carboplatinum
+Wolf,Paclitaxel + Trastuzumab,Paclitaxel + Trastuzumab
+Wolf,T-DM1 + Pertuzumab,Trastuzumab Emtansine + Pertuzumab
+Wolf,Paclitaxel + Pertuzumab + Trastuzumab,Paclitaxel + Pertuzumab + Trastuzumab
+Wolf,Paclitaxel + AMG 386 + Trastuzumab,Paclitaxel + Trebananib + Trastuzumab
+Ravi,Nivolumab,Nivolumab
+Ravi,Pembrolizumab,Pembrolizumab
+Ravi,Pembrolizumab + Carboplatin + Pemetrexed,Pembrolizumab + Carboplatin + Pemetrexed
+Ravi,Nivolumab + Ipilimumab,Nivolumab + Ipilimumab
+Ravi,Durvalumab + Tremelimumab,Durvalumab + Tremelimumab
+Ravi,Nivolumab + Lirilumab,Nivolumab + Lirilumab
+Ravi,Atezolizumab,Atezolizumab
+Ravi,Nivolumab + Urelumab,Nivolumab + Urelumab
+Ravi,Nivolumab + Gemcitabine,Nivolumab + Gemcitabine
+Ravi,Atezolizumab + Epacadostat,Atezolizumab + Epacadostat
+Ravi,Nivolumab + LAG-3,Nivolumab + LAG-3
+Ravi,Avelumab,Avelumab
+IMmotion150,Atezo+Bev,Atezolizumab + Bevacizumab
+IMmotion150,Sunitinib,Sunitinib
+IMmotion150,Atezo,Atezolizumab
+Abacus,Atezolizumab,Atezolizumab
+Prat,NIVOLUMAB,Nivolumab
+Prat,PEMBROLIZUMAB,Pembrolizumab
+Wolf2,Paclitaxel,Paclitaxel
+Wolf2,durvalumab/olaparib,Durvalumab/Olaparib
+Fehrenbacher,Docetaxel,Docetaxel
+Fehrenbacher,MPDL3280A,Atezolizumab
+Rittmeyer,Docetaxel,Docetaxel
+Rittmeyer,MPDL3280A,Atezolizumab
+Gide,Ipilimumab + Pembrolizumab,Ipilimumab + Pembrolizumab
+Gide,Ipilimumab + Nivolumab,Ipilimumab + Nivolumab
+Gide,Pembrolizumab,Pembrolizumab
+Gide,Nivolumab,Nivolumab
+Hartwig,Atezolizumab,Atezolizumab
+Hartwig,Durvalumab,Durvalumab
+Hartwig,Ipilimumab,Ipilimumab
+Hartwig,Ipilimumab/Nivolumab,Ipilimumab + Nivolumab
+Hartwig,Nivolumab,Nivolumab
+Hartwig,Nivolumab/Nivolumab,Nivolumab + Nivolumab
+Hartwig,Pembrolizumab,Pembrolizumab
+Hartwig,Pembrolizumab/Pembrolizumab,Pembrolizumab + Pembrolizumab
+Hartwig,Tremelimumab,Tremelimumab

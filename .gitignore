@@ -170,3 +170,22 @@ dmypy.json
 
 .snakemake
 tmp
+
+# ============================================================
+# ICB_Hwang: Data curation and Snakemake
+# ============================================================
+
+# Downloaded GEO data
+data/download/
+
+# Generated clinical, expression, and MAE outputs
+data/curation/
+
+# Snakemake working files
+.snakemake/
+
+# Temporary files
+tmp/
+
+# Miniforge installer
+miniforge.sh

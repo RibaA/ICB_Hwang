@@ -1,0 +1,106 @@
+study,cancer_type,tissueid
+Braun,Kidney,Kidney
+Fumet.1,Lung,Lung
+Fumet.2,Lung,Lung
+Gide,Melanoma,Skin
+Hugo,Melanoma,Skin
+Hwang,Lung,Lung
+INSPIRE,HNC,Head and Neck
+INSPIRE,Breast,Breast
+INSPIRE,Ovary,Ovary/Fallopian Tube
+INSPIRE,Melanoma,XXX
+INSPIRE,Other,Other
+Jerby_Arnon,Melanoma,Skin
+Jung,Lung,Lung
+Kim,Gastric,Esophagus/Stomach
+Liu,Melanoma,Skin
+Liu,mucosal,Mucosal
+Mariathasan,Lymph_node,Lymphoid
+Mariathasan,Bladder,Bladder/Urinary Tract
+Mariathasan,Kidney,Kidney
+Mariathasan,Ureteral,
+Mariathasan,Lung,Lung
+Mariathasan,Unknown,Other
+Mariathasan,Liver,Liver
+Miao.1,Kidney,Kidney
+Miao.2,Colon,Bowel
+Miao.2,Lung,Lung
+Miao.2,Bladder,Bladder/Urinary Tract
+Miao.2,Melanoma,XXX
+Miao.2,HNC,Head and Neck
+Miao.2,Other,Other
+Nathanson,Melanoma,Skin
+Nathanson,unknown,Other
+Nathanson,cutaneous,Skin
+Nathanson,uveal,Eye
+Nathanson,acral,Skin
+Nathanson,not available,
+Padron,Pancreas,Pancreas
+Puch,Melanoma,Skin
+Riaz,Melanoma,Skin
+Riaz,CUTANEOUS,Skin
+Riaz,OTHER,Other
+Riaz,ACRAL,Skin
+Riaz,MUCOSAL,Mucosal
+Riaz,OCULAR/UVEAL,Eye
+Rizvi.15,Lung,Lung
+Rizvi.18,Lung,Lung
+Roh,Melanoma,Skin
+Samstein,Breast,Breast
+Samstein,Esophagus,Esophagus/Stomach
+Samstein,Bladder,Bladder/Urinary Tract
+Samstein,Lung,Lung
+Samstein,Stomach,Esophagus/Stomach
+Samstein,Ureteral,XXX
+Samstein,Brain,CNS/Brain
+Samstein,HNC,Head and Neck
+Samstein,NA,
+Samstein,Kidney,Kidney
+Samstein,Melanoma,XXX
+Samstein,Colon,Bowel
+Samstein,Ovary,Ovary/Fallopian Tube
+Samstein,Eye,Eye
+Samstein,Other,Other
+Shiuan,Kidney,Kidney
+Snyder,Ureteral,
+Van_Allen,Melanoma,Skin
+VanDenEnde,Esophageal,Esophagus/Stomach
+Ravi,Lung,Lung
+Thibaudin,Colon,Bowel
+Zhao,Brain,CNS/Brain
+Wolf,Breast,Breast
+Auslander,Melanoma,Skin
+Damrauer,Bladder,Bladder/Urinary Tract
+IMmotion150,Kidney,Kidney
+Cloughesy,Brain,CNS/Brain
+Abacus,Bladder,Bladder/Urinary Tract
+Prat,HNC,Head and Neck
+Prat,Lung,Lung
+Prat,Melanoma,Skin
+Ascierto,Kidney,Kidney
+OCTANE,LUNG,Lung
+OCTANE,EYE,Eye
+OCTANE,BLADDER,Bladder/Urinary Tract
+OCTANE,KIDNEY,Kidney
+OCTANE,HEAD_NECK,Head and Neck
+OCTANE,Ovary,Ovary/Fallopian Tube
+OCTANE,SKIN,Skin
+OCTANE,BOWEL,Bowel
+OCTANE,STOMACH,Esophagus/Stomach
+OCTANE,CERVIX,Cervix
+OCTANE,PROSTATE,Prostate
+OCTANE,ADRENAL_GLAND,
+Wolf2,Breast,Breast
+Fehrenbacher,Lung,Lung
+Rittmeyer,Lung,Lung
+Hartwig,Bone/Soft tissue,Soft tissue/Bone
+Hartwig,Colorectum,Colon
+Hartwig,Head and neck,Head and Neck
+Hartwig,Kidney,Kidney
+Hartwig,Lung,Lung
+Hartwig,Mesothelium,Mesothelium
+Hartwig,Vulva,Vulva
+Hartwig,Prostate,Prostate
+Hartwig,Melanoma,Skin
+Hartwig,Small intestine,Small Intestine
+Hartwig,Bladder,Bladder/Urinary Tract
