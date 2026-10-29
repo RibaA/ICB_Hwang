@@ -1,58 +1,144 @@
-library(data.table)
-library(R.utils)
+
+#!/usr/bin/env Rscript
+
+# ============================================================
+# Gene expression harmonization: GSE136961 (Hwang)
+# ============================================================
+#
+# Inputs:
+#   data/download/EXP_TPM.tsv
+#   data/curation/cased_sequenced.csv
+#
+# Output:
+#   data/curation/EXPR.csv (semicolon-delimited)
+#
+# Purpose:
+#   Harmonize gene expression data for the Hwang cohort
+#   following the common ICB expression format.
+#
+# Processing:
+#   1. Read the TPM expression matrix.
+#   2. Extract gene symbols from Symbol_ID.
+#   3. Resolve duplicate gene symbols by retaining the row
+#      with the highest summed TPM across all samples.
+#   4. Retain samples with expression data available (expr=1).
+#   5. Transform expression values using log2(TPM + 0.001).
+#   6. Export a gene-by-sample expression matrix.
+#
+# Notes:
+#   - Input values are TPM, not raw read counts.
+#   - Input expression data comes from a targeted immune
+#     response gene panel, not whole-transcriptome RNA-seq.
+#   - Gene identifiers are harmonized to symbols.
+#   - Output rows represent genes and columns represent
+#     GEO sample accessions (GSM identifiers).
+# ============================================================
+
+suppressPackageStartupMessages({
+  library(data.table)
+})
+
+# ------------------------------------------------------------
+# 1. Define directories
+# ------------------------------------------------------------
 
 args <- commandArgs(trailingOnly = TRUE)
-input_dir <- args[1]
-output_dir <- args[2]
 
-tpm = as.matrix( read.csv( file.path(input_dir, "EXP_TPM.tsv"), stringsAsFactors=FALSE , sep="\t" , header=TRUE ) )
-rownames(tpm) = sapply( tpm[,1] , function(x){ unlist( strsplit( x , "_" , fixed=TRUE ) )[1] } )
-tpm = tpm[,-1]
+input_dir  <- if (length(args) >= 1) args[1] else "data/download"
+output_dir <- if (length(args) >= 2) args[2] else "data/curation"
 
-rid = rownames(tpm)
-cid = colnames(tpm)
-tpm = apply(apply(tpm,2,as.character),2,as.numeric)
-colnames(tpm) = cid
-rownames(tpm) = rid
+dir.create(output_dir, recursive = TRUE, showWarnings = FALSE)
 
-#############################################################################
-#############################################################################
-## Remove duplicate genes
+# ------------------------------------------------------------
+# 2. Read TPM expression matrix
+# ------------------------------------------------------------
 
-expr_uniq <- tpm[!(rownames(tpm)%in%rownames(tpm[duplicated(rownames(tpm)),])),]
-expr_dup <- tpm[(rownames(tpm)%in%rownames(tpm[duplicated(rownames(tpm)),])),]
+expr <- data.table::fread(
+  file.path(input_dir, "EXP_TPM.tsv"),
+  sep = "\t",
+  header = TRUE,
+  check.names = FALSE
+)
 
-expr_dup <- expr_dup[order(rownames(expr_dup)),]
-id <- unique(rownames(expr_dup))
+# Extract gene symbols from Symbol_ID
+# Example: ABCF1_11741283 -> ABCF1
+gene_symbols <- sub("_.*$", "", expr$Symbol_ID)
 
-expr_dup.rm <- NULL
-names <- NULL
-for(j in 1:length(id)){
-	tmp <- expr_dup[which(rownames(expr_dup)%in%id[j]),]
-	tmp.sum <- apply(tmp,1,function(x){sum(as.numeric(as.character(x)),na.rm=T)})
-	tmp <- tmp[which(tmp.sum%in%max(tmp.sum,na.rm=T)),]
+# Convert expression columns to numeric matrix
+tpm <- as.matrix(
+  expr[, setdiff(colnames(expr), "Symbol_ID"), with = FALSE]
+)
 
-	if( is.null(dim(tmp)) ){
-	  expr_dup.rm <- rbind(expr_dup.rm,tmp) 
-	  names <- c(names,names(tmp.sum)[1])
-	}   
-}
-tpm <- rbind(expr_uniq,expr_dup.rm)
-rownames(tpm) <- c(rownames(expr_uniq),names)
-tpm = tpm[sort(rownames(tpm)),]
+storage.mode(tpm) <- "numeric"
+rownames(tpm) <- gene_symbols
 
-#############################################################################
-#############################################################################
+# ------------------------------------------------------------
+# 3. Resolve duplicate gene symbols
+# ------------------------------------------------------------
+# Retain the row with the highest total TPM for each gene
+row_totals <- rowSums(tpm, na.rm = TRUE)
 
-# sampleID = read.csv( file.path(input_dir, "sampleID.txt"), stringsAsFactors=FALSE , sep="\t" )
-# rownames(sampleID) = sampleID$Patient
-# 
-# colnames(tpm) =  sampleID[ colnames(tpm) , ]$GEO
+# Order by gene symbol and decreasing total expression
+ord <- order(rownames(tpm), -row_totals)
 
-#############################################################################
-#############################################################################
+tpm <- tpm[ord, , drop = FALSE]
 
-case = read.csv( file.path(output_dir, "cased_sequenced.csv"), stringsAsFactors=FALSE , sep=";" )
-tpm = log2( tpm[ , colnames(tpm) %in% case[ case$expr %in% 1 , ]$patient ] + 0.001 )
+# Keep the first row for each unique gene
+tpm <- tpm[
+  !duplicated(rownames(tpm)),
+  ,
+  drop = FALSE
+]
 
-write.table( tpm , file= file.path(output_dir, "EXPR.csv") , quote=FALSE , sep=";" , col.names=TRUE , row.names=TRUE )
+# Sort genes alphabetically
+tpm <- tpm[
+  order(rownames(tpm)),
+  ,
+  drop = FALSE
+]
+
+# ------------------------------------------------------------
+# 4. Select samples with expression data
+# ------------------------------------------------------------
+
+case <- read.csv(
+  file.path(output_dir, "cased_sequenced.csv"),
+  stringsAsFactors = FALSE,
+  sep = ";"
+)
+
+expr_samples <- case$patient[case$expr == 1]
+
+# Retain only samples with available expression data
+tpm <- tpm[
+  ,
+  colnames(tpm) %in% expr_samples,
+  drop = FALSE
+]
+
+# ------------------------------------------------------------
+# 5. Log2 transformation
+# ------------------------------------------------------------
+
+tpm <- log2(tpm + 0.001)
+
+# ------------------------------------------------------------
+# 6. Export harmonized expression matrix
+# ------------------------------------------------------------
+
+output_file <- file.path(output_dir, "EXPR.csv")
+
+write.table(
+  tpm,
+  file = output_file,
+  quote = FALSE,
+  sep = ";",
+  col.names = TRUE,
+  row.names = TRUE,
+  na = "NA"
+)
+
+message("Harmonized expression matrix saved: ", output_file)
+message("Genes: ", nrow(tpm))
+message("Samples: ", ncol(tpm))
+message("Expression harmonization completed successfully.")
