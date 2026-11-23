@@ -39,7 +39,7 @@ The `Snakefile` runs the following steps based on file dependencies:
 - **`format_downloaded_data.R`** — prepares clinical metadata and the TPM matrix from GEO downloads.
 - **`Format_CLIN.R`** — adds common ICB variables (including histology, treatment, survival, and response) without dropping original GEO columns; unavailable values remain `NA`.
 - **`Format_cased_sequenced.R`** — records molecular assay availability per sample.
-- **`Format_EXPR.R`** — extracts gene symbols, retains one row per gene, and applies `log2(TPM + 0.001)`.
+- **`Format_EXPR.R`** — extracts gene symbols, retains one row per gene, and applies `log2(TPM + 1)`.
 - **`create_MAE.R`** — combines clinical data and annotated expression measurements into a `MultiAssayExperiment`.
 
 Further study-specific harmonization details can be documented in comments within each script or in `docs/`.
